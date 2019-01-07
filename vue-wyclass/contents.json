@@ -15,40 +15,124 @@
             "imgurl": ""
           }
         ],
-        "moviename": "",
+        "moviename": "少林五祖",
+        "description":"一部好看的電影",
+        "nationality ":"CN",
+        "moviesort":"動作武打",
         "movieurl": "",
         "tag": "NEW",
-        "viewcnt":"10"
+        "viewcnt":"123",
+        "grade":"4.1",
+        "comment":[{
+          "usricon":"","usr":"xm","sex":"男","remark":"非常不錯,值得推薦","grade":"10","usrcomcnt":"7","edate":"2019-01-07 18:24:33"
+         }],
+        "tmp":""
       },
       {
-        "imgurl": "",
-        "moviename": "",
-        "movieurl": ""
+        "imgs": [
+          {
+            "imgurl": ""
+          },
+          {
+            "imgurl": ""
+          },
+          {
+            "imgurl": ""
+          }
+        ],
+        "moviename": "少林五祖",
+        "description":"一部好看的電影",
+        "nationality ":"CN",
+        "moviesort":"動作武打",
+        "movieurl": "",
+        "tag": "NEW",
+        "viewcnt":"123",
+        "grade":"4.1",
+        "comment":[{
+          "usricon":"","usr":"xm","sex":"男","remark":"非常不錯,值得推薦","grade":"10","usrcomcnt":"7","edate":"2019-01-07 18:24:33"
+         }],
+        "tmp":""
       },
       {
-        "imgurl": "",
-        "moviename": "",
-        "movieurl": ""
+        "imgs": [
+          {
+            "imgurl": ""
+          },
+          {
+            "imgurl": ""
+          },
+          {
+            "imgurl": ""
+          }
+        ],
+        "moviename": "少林五祖",
+        "description":"一部好看的電影",
+        "nationality ":"CN",
+        "moviesort":"動作武打",
+        "movieurl": "",
+        "tag": "NEW",
+        "viewcnt":"123",
+        "grade":"4.1",
+        "comment":[{
+          "usricon":"","usr":"xm","sex":"男","remark":"非常不錯,值得推薦","grade":"10","usrcomcnt":"7","edate":"2019-01-07 18:24:33"
+         }],
+        "tmp":""
       },
       {
-        "imgurl": "",
-        "moviename": "",
-        "movieurl": ""
+        "imgs": [
+          {
+            "imgurl": ""
+          },
+          {
+            "imgurl": ""
+          },
+          {
+            "imgurl": ""
+          }
+        ],
+        "moviename": "少林五祖",
+        "description":"一部好看的電影",
+        "nationality ":"CN",
+        "moviesort":"動作武打",
+        "movieurl": "",
+        "tag": "NEW",
+        "viewcnt":"123",
+        "grade":"4.1",
+        "comment":[{
+          "usricon":"","usr":"xm","sex":"男","remark":"非常不錯,值得推薦","grade":"10","usrcomcnt":"7","edate":"2019-01-07 18:24:33"
+         }],
+        "tmp":""
       },
       {
-        "imgurl": "",
-        "moviename": "",
-        "movieurl": ""
-      },
-      {
-        "imgurl": "",
-        "moviename": "",
-        "movieurl": ""
+        "imgs": [
+          {
+            "imgurl": ""
+          },
+          {
+            "imgurl": ""
+          },
+          {
+            "imgurl": ""
+          }
+        ],
+        "moviename": "少林五祖",
+        "description":"一部好看的電影",
+        "nationality ":"CN",
+        "moviesort":"動作武打",
+        "movieurl": "",
+        "tag": "NEW",
+        "viewcnt":"123",
+        "grade":"4.1",
+        "comment":[{
+          "usricon":"","usr":"xm","sex":"男","remark":"非常不錯,值得推薦","grade":"10","usrcomcnt":"7","edate":"2019-01-07 18:24:33"
+         }],
+        "tmp":""
       }
     ]
   },
   "classified": {
-    "name": "分类"
+    "name": "分类",
+    "classify":[{"label":"全部","id":0},{"label":"中国","id":0},{"label":"欧美","id":0},{"label":"日韩","id":0},{"label":"全部","id":0},{"label":"全部","id":0}]
   },
   "scriptures": {
     "name": "经典"
