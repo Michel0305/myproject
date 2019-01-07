@@ -1,0 +1,59 @@
+{
+  "home": {
+    "name": "首页",
+    "imgcnt": 5,
+    "carousel": [
+      {
+        "imgs": [
+          {
+            "imgurl": ""
+          },
+          {
+            "imgurl": ""
+          },
+          {
+            "imgurl": ""
+          }
+        ],
+        "moviename": "",
+        "movieurl": "",
+        "tag": "NEW",
+        "viewcnt":"10"
+      },
+      {
+        "imgurl": "",
+        "moviename": "",
+        "movieurl": ""
+      },
+      {
+        "imgurl": "",
+        "moviename": "",
+        "movieurl": ""
+      },
+      {
+        "imgurl": "",
+        "moviename": "",
+        "movieurl": ""
+      },
+      {
+        "imgurl": "",
+        "moviename": "",
+        "movieurl": ""
+      },
+      {
+        "imgurl": "",
+        "moviename": "",
+        "movieurl": ""
+      }
+    ]
+  },
+  "classified": {
+    "name": "分类"
+  },
+  "scriptures": {
+    "name": "经典"
+  },
+  "user": {
+    "name": "我"
+  }
+}
