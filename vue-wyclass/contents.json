@@ -20,7 +20,7 @@
         "nationality ":"CN",
         "moviesort":"動作武打",
         "movieurl": "",
-        "tag": "NEW",
+        "tag": "1",
         "viewcnt":"123",
         "grade":"4.1",
         "comment":[{
@@ -45,7 +45,7 @@
         "nationality ":"CN",
         "moviesort":"動作武打",
         "movieurl": "",
-        "tag": "NEW",
+        "tag": "1",
         "viewcnt":"123",
         "grade":"4.1",
         "comment":[{
@@ -70,7 +70,7 @@
         "nationality ":"CN",
         "moviesort":"動作武打",
         "movieurl": "",
-        "tag": "NEW",
+        "tag": "1",
         "viewcnt":"123",
         "grade":"4.1",
         "comment":[{
@@ -95,7 +95,7 @@
         "nationality ":"CN",
         "moviesort":"動作武打",
         "movieurl": "",
-        "tag": "NEW",
+        "tag": "1",
         "viewcnt":"123",
         "grade":"4.1",
         "comment":[{
@@ -120,7 +120,7 @@
         "nationality ":"CN",
         "moviesort":"動作武打",
         "movieurl": "",
-        "tag": "NEW",
+        "tag": "1",
         "viewcnt":"123",
         "grade":"4.1",
         "comment":[{
@@ -128,11 +128,22 @@
          }],
         "tmp":""
       }
+    ],
+    "dynamic":[
+      
+    ],
+    "benefits":[
+
+    ],
+    "interact":[
+      {"usr":"xm","level":"V1","description":[{"id":1,"type":"text","marks":"hahahahahahahahaha","goods":666,"vapidness":60,"comment":[{"id":0,"usr":"xm","level":"V10","marks":"is very funny","date":"2019-01-07"},
+        {"id":1,"usr":"xm","level":"V10","marks":"is very funny","date":"2019-01-07"},{"id":2,"usr":"xm","level":"V10","marks":"is very funny","date":"2019-01-07"},{"id":3,"usr":"xm","level":"V10","marks":"is very funny","date":"2019-01-07"}],"date":"2019"}]}
     ]
+
   },
   "classified": {
     "name": "分类",
-    "classify":[{"label":"全部","id":0},{"label":"中国","id":0},{"label":"欧美","id":0},{"label":"日韩","id":0},{"label":"全部","id":0},{"label":"全部","id":0}]
+    "classify":[{"label":"全部","id":0},{"label":"喜剧","id":1},{"label":"动作","id":2},{"label":"爱情","id":3},{"label":"科幻","id":4},{"label":"恐怖","id":5}]   
   },
   "scriptures": {
     "name": "经典"
