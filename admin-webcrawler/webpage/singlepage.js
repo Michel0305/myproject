@@ -3,22 +3,32 @@
  * 獲取單頁面資訊信息
  */
 var compClass = require('../component/urlrequest');
+var cheerio = require('cheerio');
 
 let compclass = new compClass();
 
- class singlepageClass{
+class singlepageClass{
     getPageData(urlList){
         return new Promise((resolve,reject)=>{
             urlList.forEach((el,k) => {
-                if(k == 0){
-                    compclass.getBodyHtml(el.label).then(($)=>{
-                        let area = $('#endText').find('p');
-                        for (let p = 0; p < area.length; p++) {
-                            const pel = area[p];
-                            console.log($(pel).html());
-                        }                        
-                    })
-                }                            
+                let coenttext = [];
+                let imglist = [];
+                compclass.getBodyHtml(el.label).then(($)=>{
+                    let area = $('#endText').find('p');
+                    for (let p = 0; p < area.length; p++) {
+                        const pel = area[p];    
+                        let pelText = $(pel).text();
+                        if(pelText !== ""){
+                            console.log($(pel).text());
+                        }
+                    }
+                    let picarea = $('#endText').children('p').find('img');
+                    for (let p = 0; p < picarea.length; p++) {
+                        const pel = picarea[p];
+                        console.log($(pel).attr('src'));                            
+                    }
+                    
+                })                         
             });  
         })              
     }
