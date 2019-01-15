@@ -37,16 +37,17 @@ function getallPageList() {
   return new Promise((resolve, reject) => {
     compclass.getBodyHtml('https://www.66s.cc/').then(html => {
       let menus = getMenus(html);
-      menus.forEach((el,k) => {
-        PormisList.push(PagesClass.getpagesHtml(el.id > 0 ? el : { id: 0, label: '首頁', url: "https://www.66s.cc/" }));       
-      }); 
+      menus.forEach((el,k) => {        
+        PormisList.push(PagesClass.getpagesHtml(el.id > 0 ? el : { id: 0, label: '首頁', url: "https://www.66s.cc/" }));
+      });
       Promise.all(PormisList).then(rs=>{
         PagesClass.getListHtml(rs);
+        console.log("getallPageList run over ");
       }).catch((err)=>{
         console.log(err);
         console.log("Error:獲取網站URL錯誤!");
       });
-    });    
+    });
   })
 }
 

@@ -21,17 +21,18 @@ class pageData {
 
     getpagesHtml(info){
         return new Promise((reslove,reject)=>{
-            this.compclass.getBodyHtml(info.url).then(rs=>{
+            let tmpClass = new compclass();
+            tmpClass.getBodyHtml(info.url).then(rs=>{
                 let bkUrl= this.getpagedata(rs);
                 if(bkUrl !== undefined){
-                    reslove({id:info.id,cnName:info.label,pagehome:info.url,pageCnt:bkUrl.tbs}); 
+                    reslove({id:info.id,cnName:info.label,pagehome:info.url,pageCnt:bkUrl.tbs});
                 }else{
                     reslove();
-                }      
-            }).catch(err=>{ 
+                }
+            }).catch(err=>{
                 reject(err);
-            })  
-        })        
+            })
+        });
     }
 
     getpagedata($){
@@ -52,10 +53,10 @@ class pageData {
                     let ids = res._id;
                     for (let i = 1; i <= el.pageCnt; i++) {
                         let inUrl = i == 1?el.pagehome:el.pagehome+"index_"+(i).toString()+".html";
-                        DBpageurl.insert({ids:ids,url:inUrl,dt:moment(new Date()).format('YYYY-MM-DD')});                
+                        DBpageurl.insert({ids:ids,url:inUrl,dt:moment(new Date()).format('YYYY-MM-DD')});
                     }
-                });                
-            }                  
+                });
+            }
         });
     }
 
@@ -65,47 +66,47 @@ class pageData {
         let bkJSON = [];
         DBpageurl.find({dt:moment(new Date()).format('YYYY-MM-DD')},(err,rs)=>{
             rs.forEach((el,k) => {
-               let times =(arrNum[Math.ceil(Math.random()*19)])*1000+(k*300);
-               setTimeout(()=>{
+               let times =(arrNum[Math.ceil(Math.random()*19)])*3456+(k*321);
+               setInterval(()=>{
                 this.compclass.getBodyHtml(el.url).then(($)=>{
                     let contents = $('#post_container').find('li');
                     for (let i = 0; i < contents.length; i++) {
-                        const el = contents[i];
-                        let liList = $(el).children();
-                        let thumbnail =$(".thumbnail",liList); 
-                        let movieUrl = $(thumbnail).children('a').attr('href'); //資料網頁URL
-                        let movieHomeimgUrl = $(thumbnail).children('a').children('img').attr('src'); //首頁界面圖片 
-                        console.log({img:movieHomeimgUrl,movie:movieUrl})
-                    }              
+                        setInterval(()=>{
+                            const el = contents[i];
+                            let liList = $(el).children();
+                            let thumbnail =$(".thumbnail",liList);
+                            let movieUrl = $(thumbnail).children('a').attr('href'); //資料網頁URL
+                            let movieHomeimgUrl = $(thumbnail).children('a').children('img').attr('src'); //首頁界面圖片
+                            console.log({img:movieHomeimgUrl,movie:movieUrl})
+                        },times/2);
+                    }
                 }).catch(()=>{
                     console.log("Error:"+el.url);
                 })
                },times);
-            
-            });            
+            });
         })
 
-        // 
+        //
         // this.compclass.getBodyHtml(url).then(($)=>{
         //     let contents = $('#post_container').find('li');
         //         for (let i = 0; i < contents.length; i++) {
         //             const el = contents[i];
         //             let liList = $(el).children();
-        //             let thumbnail =$(".thumbnail",liList); 
+        //             let thumbnail =$(".thumbnail",liList);
         //             let movieUrl = $(thumbnail).children('a').attr('href'); //資料網頁URL
-        //             let movieHomeimgUrl = $(thumbnail).children('a').children('img').attr('src'); //首頁界面圖片 
+        //             let movieHomeimgUrl = $(thumbnail).children('a').children('img').attr('src'); //首頁界面圖片
         //             bkJSON.push({img:movieHomeimgUrl,movie:movieUrl});
-        //             //console.log(movieUrl);                     
+        //             //console.log(movieUrl);
         //         // console.log($(".thumbnail",liList).children('a').attr('href'));
         //         //  console.log($(".thumbnail",liList).children('a').children('img').text() ) ;
 
         //             // console.log("***********************隔離綫2********************");
         //             // console.log($(".article",liList).html());
 
-        //             //console.log($(el))         
-            
-        //         }  
-        //     return bkJSON;   
+        //             //console.log($(el))
+        //         }
+        //     return bkJSON;
         // })
 
     }
