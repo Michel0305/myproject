@@ -57,7 +57,15 @@ function getHtmlBodyData(){
   PagesClass.htmlmovieTree();
 }
 
-getHtmlBodyData();
+//getHtmlBodyData();
+
+
+function getMoviesData(){
+  PagesClass.movieData();
+}
+
+getMoviesData();
+
 
 app.get('/', function (req, res) {
   res.send('hello world');
