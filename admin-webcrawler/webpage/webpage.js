@@ -116,9 +116,7 @@ class pageData {
     htmlmovieTree(){
        return new Promise((resolve,reject)=>{
             DBpageurl.find({dt:moment(new Date()).format('YYYY-MM-DD')})
-            .sort({
-                ids: 0
-              })
+            .sort({ids: -1})
             .exec((err, rs) => {
                 this.getmovieUrl(rs);                
                 resolve();
@@ -133,19 +131,19 @@ class pageData {
         let tmpHost = URL.parse(data.url).host;
         let ReURL = tmpHost==null?hostUrl+data.url:data.url;        
         console.log(ReURL);
-        // this.compclass.getBodyHtml(data.url).then(($)=>{
-
-            
+        // this.compclass.getBodyHtml(data.url).then(($)=>{            
         // })
 
     }
     movieData(){
         return new Promise((resolve,reject)=>{
-            DBmoives.find({dt:moment(new Date()).format('YYYY-MM-DD')},(err,rs)=>{
+            DBmoives.find({dt:moment(new Date()).format('YYYY-MM-DD')})
+            .sort({ids: -1})
+            .exec((err, rs) => {
                 console.log(rs);
                 this.getmovieDetail(rs[0])
                 resolve();
-            })
+            });
         })
     }
 
