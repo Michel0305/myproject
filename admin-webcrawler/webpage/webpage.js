@@ -79,8 +79,7 @@ class pageData {
      */
     getmovieUrl(allList,k = 0){
         let arrNum  = [1,2,3];
-        let times =(arrNum[Math.ceil(Math.random()*2)])*1000;       
-        
+        let times =(arrNum[Math.ceil(Math.random()*2)])*1000; 
             let urls = allList[k];
             this.compclass.getBodyHtml(urls.url).then(($)=>{
                 let contents = $('#post_container').find('li');
@@ -129,7 +128,10 @@ class pageData {
     getmovieDetail(data){
         let hostUrl = 'https://www.66s.cc';
         let tmpHost = URL.parse(data.url).host;
-        let ReURL = tmpHost==null?hostUrl+data.url:data.url;        
+        let ReURL = tmpHost==null?hostUrl+data.url:data.url;    
+        tmpClass.getBodyHtml(ReURL).then(rs=>{
+
+        })   
         console.log(ReURL);
         // this.compclass.getBodyHtml(data.url).then(($)=>{            
         // })

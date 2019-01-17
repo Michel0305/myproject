@@ -1,5 +1,6 @@
 var fs = require('fs');
 let express = require('express');
+let schedule = require('node-schedule');
 
 var compClass = require('./component/urlrequest');
 let compclass = new compClass();
@@ -36,7 +37,7 @@ function getallPageList() {
   let PormisList = [];//
   return new Promise((resolve, reject) => {
     compclass.getBodyHtml('https://www.66s.cc/').then(html => {
-      let menus = getMenus(html);
+      let menus = getMenus(html);      
       menus.forEach((el,k) => {        
         PormisList.push(PagesClass.getpagesHtml(el.id > 0 ? el : { id: 0, label: '首頁', url: "https://www.66s.cc/" }));
       });
@@ -51,17 +52,60 @@ function getallPageList() {
   })
 }
 
-//getallPageList();
 
-function getHtmlBodyData(){
-  PagesClass.htmlmovieTree();
+function getMenusLsit(){ //獲取目錄及對應的URL
+  schedule.scheduleJob('10 1 1 * * *', ()=>{
+    getallPageList().then(()=>{
+      console.log("Get Menus Is OK");
+    }).catch(()=>{
+      let scheduleGetMenus = schedule.scheduleJob('30 * * * * *',()=>{
+        getallPageList().then(()=>{
+          scheduleGetMenus.cancel();
+        }).catch(()=>{
+          console.log("獲取錯誤欸!");
+        })
+      })       
+    })
+  }); 
 }
 
-//getHtmlBodyData();
+//getallPageList();
+getMenusLsit();
+
+function getHtmlBodyData(){ //獲取每頁的電影數及URL
+  schedule.scheduleJob('10 15 1 * * *', ()=>{
+    PagesClass.htmlmovieTree().then(()=>{
+      console.log("Get body Is OK");
+    }).catch(()=>{
+      let scheduleGetMenus = schedule.scheduleJob('30 * * * * *',()=>{
+        PagesClass.htmlmovieTree().then(()=>{
+          scheduleGetMenus.cancel();
+        }).catch(()=>{
+          console.log("獲取錯誤欸!");
+        })
+      })       
+    })
+  }); 
+}
+
+PagesClass.htmlmovieTree(); 
+getHtmlBodyData();
 
 
-function getMoviesData(){
-  PagesClass.movieData();
+function getMoviesData(){ //獲取電影明細
+  schedule.scheduleJob('20 50 1 * * *', ()=>{
+    PagesClass.movieData().then(()=>{
+      console.log("Get data Is OK");
+    }).catch(()=>{
+      let scheduleGetMenus = schedule.scheduleJob('30 * * * * *',()=>{
+        PagesClass.movieData().then(()=>{
+          scheduleGetMenus.cancel();
+        }).catch(()=>{
+          console.log("獲取錯誤欸!");
+        })
+      })       
+    })
+  }); 
 }
 
 getMoviesData();
