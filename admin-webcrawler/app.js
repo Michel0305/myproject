@@ -88,7 +88,7 @@ function getHtmlBodyData(){ //獲取每頁的電影數及URL
   }); 
 }
 
-PagesClass.htmlmovieTree(); 
+//PagesClass.htmlmovieTree(); 
 getHtmlBodyData();
 
 
@@ -108,6 +108,8 @@ function getMoviesData(){ //獲取電影明細
   }); 
 }
 
+
+//PagesClass.movieData();
 getMoviesData();
 
 

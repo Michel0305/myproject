@@ -129,10 +129,40 @@ class pageData {
         let hostUrl = 'https://www.66s.cc';
         let tmpHost = URL.parse(data.url).host;
         let ReURL = tmpHost==null?hostUrl+data.url:data.url;    
-        tmpClass.getBodyHtml(ReURL).then(rs=>{
+        this.compclass.getBodyHtml(ReURL).then(rs=>{
+            let $ = rs
+            let titleName =$('#content').children().find('h1').html();
+            let contexthtml = $('.context').children();
+            let domP = $(contexthtml).length;
 
+            for (let i = 0; i < contexthtml.length; i++) {
+                const tmpDiv = contexthtml[i];
+                console.log("************************分割開始********************************")
+                console.log($(tmpDiv).html())
+                console.log("************************分割結束********************************")
+                
+            }
+            
+
+            // for (let i = 0; i < domP.length; i++) {
+            //     const elp = domP[i];
+            //     console.log(typeof($(elp).html()))
+            //     if($(elp).html() !== "undefined"){
+            //         console.log($(elp).html())
+            //         if($(elp).find('img')){
+            //             console.log($(elp).find('img').attr("src") );
+            //          }else{
+            //             console.log("AAAAA")
+            //          }
+            //     }               
+                              
+            // }
+
+            //console.log($(contexthtml).html());
+            // console.log($.html());
+            //console.log(ReURL);
         })   
-        console.log(ReURL);
+        
         // this.compclass.getBodyHtml(data.url).then(($)=>{            
         // })
 
@@ -142,7 +172,6 @@ class pageData {
             DBmoives.find({dt:moment(new Date()).format('YYYY-MM-DD')})
             .sort({ids: -1})
             .exec((err, rs) => {
-                console.log(rs);
                 this.getmovieDetail(rs[0])
                 resolve();
             });
