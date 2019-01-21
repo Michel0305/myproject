@@ -42,11 +42,12 @@ function getallPageList() {
         PormisList.push(PagesClass.getpagesHtml(el.id > 0 ? el : { id: 0, label: '首頁', url: "https://www.66s.cc/" }));
       });
       Promise.all(PormisList).then(rs=>{
-        PagesClass.getListHtml(rs);
+        PagesClass.getListHtml(rs);    
+        resolve({code:200,msg:'get All Page Url Over'});  
         console.log("getallPageList run over ");
-      }).catch((err)=>{
-        console.log(err);
+      }).catch((err)=>{       
         console.log("Error:獲取網站URL錯誤!");
+        reject({code:400,msg:'get All Page Url Error'});
       });
     });
   })
@@ -54,63 +55,34 @@ function getallPageList() {
 
 
 function getMenusLsit(){ //獲取目錄及對應的URL
-  schedule.scheduleJob('10 1 1 * * *', ()=>{
-    getallPageList().then(()=>{
-      console.log("Get Menus Is OK");
-    }).catch(()=>{
-      let scheduleGetMenus = schedule.scheduleJob('30 * * * * *',()=>{
-        getallPageList().then(()=>{
-          scheduleGetMenus.cancel();
-        }).catch(()=>{
-          console.log("獲取錯誤欸!");
-        })
-      })       
-    })
+  schedule.scheduleJob('30 * * * * *', ()=>{
+    console.log("getMenusLsit");
+    return getallPageList()
   }); 
 }
 
-//getallPageList();
 getMenusLsit();
+
 
 function getHtmlBodyData(){ //獲取每頁的電影數及URL
   schedule.scheduleJob('10 15 1 * * *', ()=>{
-    PagesClass.htmlmovieTree().then(()=>{
-      console.log("Get body Is OK");
-    }).catch(()=>{
-      let scheduleGetMenus = schedule.scheduleJob('30 * * * * *',()=>{
-        PagesClass.htmlmovieTree().then(()=>{
-          scheduleGetMenus.cancel();
-        }).catch(()=>{
-          console.log("獲取錯誤欸!");
-        })
-      })       
-    })
+  return  PagesClass.htmlmovieTree()
   }); 
 }
-
-//PagesClass.htmlmovieTree(); 
-getHtmlBodyData();
 
 
 function getMoviesData(){ //獲取電影明細
   schedule.scheduleJob('20 50 1 * * *', ()=>{
-    PagesClass.movieData().then(()=>{
-      console.log("Get data Is OK");
-    }).catch(()=>{
-      let scheduleGetMenus = schedule.scheduleJob('30 * * * * *',()=>{
-        PagesClass.movieData().then(()=>{
-          scheduleGetMenus.cancel();
-        }).catch(()=>{
-          console.log("獲取錯誤欸!");
-        })
-      })       
-    })
+  return PagesClass.movieData();
   }); 
 }
 
+//PagesClass.htmlmovieTree(); 
+//getHtmlBodyData();
+
 
 //PagesClass.movieData();
-getMoviesData();
+//getMoviesData();
 
 
 app.get('/', function (req, res) {

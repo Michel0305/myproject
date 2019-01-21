@@ -95,8 +95,8 @@ class pageData {
                 if(k<allList.length-1){
                    return this.getmovieUrl(allList,k+1);
                 }else{
-                   console.log("分析完畢");
-                   return; 
+                   console.log("URL分析完畢");
+                   return true; 
                 }                
             }).catch(()=>{
                 if(k<allList.length-1){
@@ -104,8 +104,8 @@ class pageData {
                     DBerrorurl.insert({ url:urls.url,dt:moment(new Date()).format('YYYY-MM-DD') });        
                     return this.getmovieUrl(allList,k+1);
                  }else{
-                    console.log("分析完畢") 
-                    return; 
+                    console.log("URL分析完畢") 
+                    return true; 
                  }               
             })
        // setTimeout(()=>{
@@ -117,10 +117,17 @@ class pageData {
             DBpageurl.find({dt:moment(new Date()).format('YYYY-MM-DD')})
             .sort({ids: -1})
             .exec((err, rs) => {
-                this.getmovieUrl(rs);                
-                resolve();
-            });           
-                   
+               let isgetMovieUrl = this.getmovieUrl(rs);                
+               if(err){
+                   reject({code:400,msg:'movieTree Get Error'})
+               }else{
+                   if(isgetMovieUrl){
+                    resolve({code:200,msg:'movieTree Get Success'});
+                   }else{
+                    reject({code:400,msg:'movieTree Get Error'})
+                   }
+               }                
+            }); 
        })
     }
 
