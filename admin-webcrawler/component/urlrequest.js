@@ -10,15 +10,17 @@ var compClass = function(){
 
 compClass.prototype.getBodyHtml = function(url){
     return new Promise((resolve,reject)=>{
-        console.log(url);
+     //   console.log(url);
         superagent.get(url) // 获取网页内容
-        .charset('utf8') // 转码-将gb2312格式转成utf-8
+        .charset('utf-8') // 转码-将gb2312格式转成utf-8
         .end((err, res)=>{
             if(err){
                 console.log(err);
                 reject()
             }else{
-                var $ = cheerio.load(res.text);
+               // var html = Iconv.decode(res.text, 'utf8');
+              // console.log(res.text);
+                var $ = cheerio.load(res.text,{decodeEntities: false});                 
                 resolve($);
             }
         })

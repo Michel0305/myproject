@@ -135,19 +135,22 @@ class pageData {
     getmovieDetail(data){
         let hostUrl = 'https://www.66s.cc';
         let tmpHost = URL.parse(data.url).host;
-        let ReURL = tmpHost==null?hostUrl+data.url:data.url;    
+        let ReURL = tmpHost==null?hostUrl+data.url:data.url;  
+        console.log(ReURL);  
         this.compclass.getBodyHtml(ReURL).then(rs=>{
             let $ = rs
-            let titleName =$('#content').children().find('h1').html();
-            let contexthtml = $('.context').children();
-            let domP = $(contexthtml).length;
-
-            for (let i = 0; i < contexthtml.length; i++) {
+            let titleName =$('#content').children().find('h1').html();            
+            let contexthtml = $('#post_content').children();
+            let tbodyHtml =$(contexthtml).find('tbody');
+            console.log($(tbodyHtml).html());
+            for (let i = 0; i < $(contexthtml).length; i++) {
                 const tmpDiv = contexthtml[i];
-                console.log("************************分割開始********************************")
-                console.log($(tmpDiv).html())
-                console.log("************************分割結束********************************")
-                
+                let imgUrl = $(tmpDiv).find('img').attr('src'); 
+                if(imgUrl == undefined){
+                    console.log($(tmpDiv).html());
+                }else{
+                    console.log(imgUrl);                   
+                }               
             }
             
 
@@ -183,6 +186,50 @@ class pageData {
                 resolve();
             });
         })
+    }
+
+    GetDateStr(AddDayCount) {   
+        var dd = new Date();  
+        dd.setDate(dd.getDate()+AddDayCount);//获取AddDayCount天后的日期
+        var y = dd.getFullYear();   
+        var m = (dd.getMonth()+1)<10?"0"+(dd.getMonth()+1):(dd.getMonth()+1);//获取当前月份的日期，不足10补0
+        var d = dd.getDate()<10?"0"+dd.getDate():dd.getDate();//获取当前几号，不足10补0
+        return y+"-"+m+"-"+d;   
+     } 
+
+    deleteOldData(){
+        let whereDate = this.GetDateStr(-3)
+        // DBcatalogue.find({dt:{$lt:whereDate}},{ multi: true },(err,res)=>{             
+        //     console.log(res);
+        // })
+        DBcatalogue.remove({dt:{$lte:whereDate}},{ multi: true },(err,res)=>{
+            if(err){
+                console.log("DBcatalogue Delete Error : " + err.toString());
+            }else{
+                console.log("DBcatalogue Delete Success : remove - " + res.toString());
+            }
+        });
+        DBpageurl.remove({dt:{$lte:whereDate}},{ multi: true },(err,res)=>{
+            if(err){
+                console.log("DBpageurl Delete Error : " + err.toString());
+            }else{
+                console.log("DBpageurl Delete Success : remove - " + res.toString());
+            }
+        });
+        DBmoives.remove({dt:{$lte:whereDate}},{ multi: true },(err,res)=>{
+            if(err){
+                console.log("DBmoives Delete Error : " + err.toString());
+            }else{
+                console.log("DBmoives Delete Success : remove - " + res.toString());
+            }
+        });
+        DBerrorurl.remove({dt:{$lte:whereDate}},{ multi: true },(err,res)=>{
+            if(err){
+                console.log("DBerrorurl Delete Error : " + err.toString());
+            }else{
+                console.log("DBerrorurl Delete Success : remove - " + res.toString());
+            }
+        });
     }
 
 }

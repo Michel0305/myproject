@@ -55,7 +55,7 @@ function getallPageList() {
 
 
 function getMenusLsit(){ //獲取目錄及對應的URL
-  schedule.scheduleJob('30 * * * * *', ()=>{
+  schedule.scheduleJob('1 5 1 * * *', ()=>{
     console.log("getMenusLsit");
     return getallPageList()
   }); 
@@ -65,25 +65,25 @@ getMenusLsit();
 
 
 function getHtmlBodyData(){ //獲取每頁的電影數及URL
-  schedule.scheduleJob('10 15 1 * * *', ()=>{
+  schedule.scheduleJob('30 8 1 * * *', ()=>{
   return  PagesClass.htmlmovieTree()
   }); 
 }
 
+getHtmlBodyData();
 
 function getMoviesData(){ //獲取電影明細
-  schedule.scheduleJob('20 50 1 * * *', ()=>{
+  schedule.scheduleJob('50 50 1 * * *', ()=>{
   return PagesClass.movieData();
   }); 
 }
 
-//PagesClass.htmlmovieTree(); 
-//getHtmlBodyData();
+PagesClass.movieData();
+getMoviesData();
 
-
-//PagesClass.movieData();
-//getMoviesData();
-
+schedule.scheduleJob('1 1 3 * * *',()=>{
+  PagesClass.deleteOldData();
+}) 
 
 app.get('/', function (req, res) {
   res.send('hello world');
